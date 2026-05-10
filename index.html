@@ -67,7 +67,7 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
 .phase-name{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--light);font-weight:700;}
 .phase-yr{font-size:9px;color:var(--text-dim);margin-top:2px;}
 .phase-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:1rem;}
-.phase-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1rem .75rem;font-size:10px;line-height:1.8;color:var(--text);transition:all .3s ease;max-height:200px;overflow:hidden;position:relative;}
+.phase-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1rem .75rem;font-size:10px;line-height:1.8;color:var(--text);transition:all .3s ease;max-height:200px;overflow:hidden;position:relative;cursor:pointer;}
 .phase-card.expanded{
   position:fixed;
   top:50%;
@@ -81,12 +81,14 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
   background:var(--deep);
   border:2px solid;
   border-radius:8px;
-  box-shadow:0 0 60px rgba(0,0,0,.9),0 0 100px;
-  animation:expandIn .4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:0 0 60px rgba(0,0,0,.9);
+  animation:expandIn .5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow-y:auto;
+  max-height:85vh;
 }
 @keyframes expandIn{
   from{
-    transform:translate(-50%,-50%) scale(0.3);
+    transform:translate(-50%,-50%) scale(0.2);
     opacity:0;
   }
   to{
@@ -99,7 +101,7 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
   inset:0;
   background:rgba(0,0,0,.7);
   z-index:999;
-  animation:fadeIn .2s ease;
+  animation:fadeIn .3s ease;
 }
 @keyframes fadeIn{
   from{opacity:0;}
@@ -107,13 +109,13 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
 }
 .phase-card strong{display:block;font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;margin-bottom:.5rem;letter-spacing:.04em;}
 .p1 strong{color:#8b7ed8}.p2 strong{color:var(--blue)}.p3 strong{color:var(--green)}.p4 strong{color:var(--amber)}.p5 strong{color:var(--red)}
-.phase-card.p1.expanded{border-color:#8b7ed8;background:rgba(5,8,16,.95);box-shadow:0 0 60px rgba(108,95,199,.4),inset 0 0 30px rgba(139,126,216,.1);}
-.phase-card.p2.expanded{border-color:var(--blue);background:rgba(5,8,16,.95);box-shadow:0 0 60px rgba(58,143,255,.4),inset 0 0 30px rgba(58,143,255,.1);}
-.phase-card.p3.expanded{border-color:var(--green);background:rgba(5,8,16,.95);box-shadow:0 0 60px rgba(0,229,160,.4),inset 0 0 30px rgba(0,229,160,.1);}
-.phase-card.p4.expanded{border-color:var(--amber);background:rgba(5,8,16,.95);box-shadow:0 0 60px rgba(245,166,35,.4),inset 0 0 30px rgba(245,166,35,.1);}
-.phase-card.p5.expanded{border-color:var(--red);background:rgba(5,8,16,.95);box-shadow:0 0 60px rgba(232,64,64,.4),inset 0 0 30px rgba(232,64,64,.1);}
+.phase-card.p1.expanded{border-color:#8b7ed8;background:rgba(5,8,16,.98);box-shadow:0 0 60px rgba(108,95,199,.5);}
+.phase-card.p2.expanded{border-color:var(--blue);background:rgba(5,8,16,.98);box-shadow:0 0 60px rgba(58,143,255,.5);}
+.phase-card.p3.expanded{border-color:var(--green);background:rgba(5,8,16,.98);box-shadow:0 0 60px rgba(0,229,160,.5);}
+.phase-card.p4.expanded{border-color:var(--amber);background:rgba(5,8,16,.98);box-shadow:0 0 60px rgba(245,166,35,.5);}
+.phase-card.p5.expanded{border-color:var(--red);background:rgba(5,8,16,.98);box-shadow:0 0 60px rgba(232,64,64,.5);}
 .phase-card.expanded strong{font-size:1.2rem;margin-bottom:1rem;}
-.phase-card.expanded{font-size:14px;line-height:2;}
+.phase-card.expanded{font-size:13px;line-height:1.8;}
 .chart-wrap{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.5rem;margin:1.5rem 0;overflow:hidden;}
 .chart-wrap svg{display:block;width:100%;height:auto;}
 .kpi-table{width:100%;border-collapse:collapse;margin:1.5rem 0;}
@@ -356,11 +358,11 @@ draw();
 
 /* Tab navigation */
 function show(id){
+  closePhaseModal();
   document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
-  closePhaseModal();
 }
 
 /* Interactive phase expansion - FULL SCREEN MODAL */
@@ -398,6 +400,14 @@ function closePhaseModal(){
 // Close modal when pressing Escape
 document.addEventListener('keydown', function(e){
   if(e.key === 'Escape') closePhaseModal();
+});
+
+// Close when clicking outside the modal (but not inside it)
+document.addEventListener('click', function(e){
+  const expanded = document.querySelector('.phase-card.expanded');
+  if(expanded && !expanded.contains(e.target) && !e.target.classList.contains('phase-dot')){
+    closePhaseModal();
+  }
 });
 </script>
 </body>
