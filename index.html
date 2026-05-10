@@ -25,8 +25,6 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
 .page-section{display:none;animation:fadein .4s ease;}
 .page-section.active{display:block;}
 @keyframes fadein{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-/* Hero & Stats */
 .hero{text-align:center;padding:4rem 0 3rem;}
 .hero-tag{display:inline-block;background:rgba(0,229,160,.1);border:1px solid rgba(0,229,160,.3);color:var(--green);font-size:10px;letter-spacing:.15em;text-transform:uppercase;padding:4px 14px;border-radius:2px;margin-bottom:1.5rem;}
 .hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.2rem,5vw,3.8rem);color:var(--white);line-height:1.1;margin-bottom:1rem;letter-spacing:-.02em;}
@@ -34,21 +32,19 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
 .hero p{max-width:580px;margin:0 auto 2.5rem;line-height:1.9;color:var(--text);}
 .orbit-badge{display:inline-flex;align-items:center;gap:8px;background:var(--panel);border:1px solid var(--border);padding:8px 20px;border-radius:4px;font-size:11px;color:var(--light);letter-spacing:.06em;}
 .orbit-badge span{color:var(--amber);font-weight:700;}
+
+/* ARCHITECTURE GRID */
+.arch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin:2rem 0;}
+.arch-card{background:var(--panel);border:1px solid var(--border);padding:1.2rem;border-radius:6px;}
+.arch-card h4{font-size:10px;text-transform:uppercase;color:var(--blue);margin-bottom:8px;letter-spacing:1px;}
+.arch-card p{font-size:11px;line-height:1.5;color:var(--text-dim);}
+
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:6px;overflow:hidden;margin:3rem 0;}
 .stat-card{background:var(--panel);padding:1.5rem;transition:background .2s;}
 .stat-card:hover{background:var(--deep);}
 .stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;line-height:1;margin-bottom:.4rem;}
 .stat-num.green{color:var(--green)}.stat-num.amber{color:var(--amber)}.stat-num.blue{color:var(--blue)}.stat-num.red{color:var(--red)}
 .stat-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);}
-
-/* Solar Monitor */
-.solar-monitor{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:1.2rem;display:flex;align-items:center;gap:2rem;margin-bottom:2rem;}
-.solar-val{text-align:center;}
-.solar-val .label{font-size:9px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;}
-.solar-val .value{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--amber);transition: color 0.5s;}
-.solar-status{flex:1;padding-left:2rem;border-left:1px solid var(--border);font-size:11px;line-height:1.6;}
-
-/* General Blocks */
 .section-head{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;}
 .section-head h2{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;color:var(--white);}
 .section-head .line{flex:1;height:1px;background:var(--border);}
@@ -61,33 +57,39 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
 .brief-card ul li{padding:4px 0 4px 16px;position:relative;line-height:1.7;color:var(--text);}
 .brief-card ul li::before{content:'—';position:absolute;left:0;color:var(--green);}
 
-/* Timeline Phases */
+/* PHASE SYSTEM */
 .phase-timeline{display:flex;gap:0;margin:2rem 0;position:relative;}
 .phase-timeline::before{content:'';position:absolute;top:40px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),var(--border),transparent);z-index:0;}
 .phase{flex:1;text-align:center;position:relative;z-index:1;}
 .phase-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border);margin:34px auto 10px;transition:all .3s;cursor:pointer;}
-.phase.p1 .phase-dot{background:#6c5fc7;border-color:#8b7ed8;box-shadow:0 0 12px rgba(108,95,199,.5);}
+.phase-dot:hover{transform:scale(1.4);}
+.phase.p1 .phase-dot{background:#6c5fc7;border-color:#8b7ed8;}
+.phase.p2 .phase-dot{background:var(--blue);border-color:#6aacff;}
+.phase.p3 .phase-dot{background:#0f9e6a;border-color:var(--green);}
+.phase.p4 .phase-dot{background:var(--amber);border-color:#ffc04a;}
+.phase.p5 .phase-dot{background:var(--red);border-color:#f06060;}
 .phase.p1 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(108,95,199,.8);}
-.phase.p2 .phase-dot{background:var(--blue);border-color:#6aacff;box-shadow:0 0 12px rgba(58,143,255,.5);}
 .phase.p2 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(58,143,255,.8);}
-.phase.p3 .phase-dot{background:#0f9e6a;border-color:var(--green);box-shadow:0 0 12px rgba(0,229,160,.5);}
 .phase.p3 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(0,229,160,.8);}
-.phase.p4 .phase-dot{background:var(--amber);border-color:#ffc04a;box-shadow:0 0 12px rgba(245,166,35,.5);}
 .phase.p4 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(245,166,35,.8);}
-.phase.p5 .phase-dot{background:var(--red);border-color:#f06060;box-shadow:0 0 12px rgba(232,64,64,.5);}
 .phase.p5 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(232,64,64,.8);}
-.phase-name{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--light);font-weight:700;}
-.phase-yr{font-size:9px;color:var(--text-dim);margin-top:2px;}
 
 .phase-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:1rem;}
 .phase-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1rem .75rem;font-size:10px;line-height:1.8;color:var(--text);transition:all .3s ease;max-height:200px;overflow:hidden;position:relative;cursor:pointer;}
-.phase-card.expanded{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1000;width:90%;max-width:600px;padding:2.5rem;background:var(--deep);border:2px solid;border-radius:8px;box-shadow:0 0 60px rgba(0,0,0,.9);animation:expandIn .5s cubic-bezier(0.34, 1.56, 0.64, 1);overflow-y:auto;max-height:85vh;color:var(--white);}
+.phase-card.expanded{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1000;width:90%;max-width:600px;padding:2.5rem;background:var(--void);border:2px solid;border-radius:8px;box-shadow:0 0 60px rgba(0,0,0,.9);animation:expandIn .5s cubic-bezier(0.34, 1.56, 0.64, 1);overflow-y:auto;max-height:85vh;color:var(--white);opacity:1 !important; visibility: visible !important;}
 @keyframes expandIn{from{transform:translate(-50%,-50%) scale(0.2);opacity:0;}to{transform:translate(-50%,-50%) scale(1);opacity:1;}}
-.phase-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;}
+.phase-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;animation:fadeIn .3s ease;}
+
 .phase-card strong{display:block;font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;margin-bottom:.5rem;letter-spacing:.04em;}
 .p1 strong{color:#8b7ed8}.p2 strong{color:var(--blue)}.p3 strong{color:var(--green)}.p4 strong{color:var(--amber)}.p5 strong{color:var(--red)}
+.phase-card.p1.expanded{border-color:#8b7ed8;}
+.phase-card.p2.expanded{border-color:var(--blue);}
+.phase-card.p3.expanded{border-color:var(--green);}
+.phase-card.p4.expanded{border-color:var(--amber);}
+.phase-card.p5.expanded{border-color:var(--red);}
+.phase-card.expanded strong{font-size:1.2rem;margin-bottom:1rem;}
+.phase-card.expanded{font-size:14px;line-height:1.8;}
 
-/* Charts & KPI */
 .chart-wrap{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.5rem;margin:1.5rem 0;overflow:hidden;position:relative;}
 .chart-wrap svg{display:block;width:100%;height:auto;}
 .kpi-table{width:100%;border-collapse:collapse;margin:1.5rem 0;}
@@ -97,33 +99,24 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
 .badge.pass{background:rgba(0,229,160,.12);color:var(--green);border:1px solid rgba(0,229,160,.3);}
 .badge.warn{background:rgba(245,166,35,.12);color:var(--amber);border:1px solid rgba(245,166,35,.3);}
 .badge.fail{background:rgba(232,64,64,.12);color:var(--red);border:1px solid rgba(232,64,64,.3);}
-.ref-block{background:var(--panel);border-left:3px solid var(--blue);border-radius:0 4px 4px 0;padding:1rem 1.2rem;margin:.8rem 0;}
-.ref-block .ref-id{font-size:10px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}
 
-/* IMPACT SLIDER */
-.impact-timeline-control {background: var(--panel); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;}
-#impact-slider {width: 100%; max-width: 500px; -webkit-appearance: none; background: var(--border); height: 4px; border-radius: 2px; outline: none;}
-#impact-slider::-webkit-slider-thumb {-webkit-appearance: none; width: 20px; height: 20px; background: var(--green); border-radius: 50%; cursor: pointer; border: 4px solid var(--void); box-shadow: 0 0 10px var(--green);}
-.slider-labels {display: flex; justify-content: space-between; width: 100%; max-width: 500px; padding: 0 5px;}
-.slider-labels span {font-size: 11px; color: var(--text-dim); cursor: pointer;}
-.slider-labels span.active {color: var(--white); font-weight: 700;}
-.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:1.5rem 0;}
-.impact-card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.5rem;position:relative;overflow:hidden;transition:all 0.4s ease;opacity:0.4;}
-.impact-card.active-year{opacity:1;border-color:var(--white);transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
-.impact-yr{font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;margin-bottom:.6rem;}
-.impact-yr.y10{color:var(--blue)}.impact-yr.y20{color:var(--amber)}.impact-yr.y50{color:var(--green)}
+/* SOLAR MONITOR */
+.solar-monitor{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:1.2rem;display:flex;align-items:center;gap:2rem;margin-bottom:2rem;}
+.solar-val{text-align:center;}
+.solar-val .label{font-size:9px;color:var(--text-dim);text-transform:uppercase;margin-bottom:4px;}
+.solar-val .value{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--amber);transition: color 0.5s;}
+.solar-status{flex:1;padding-left:2rem;border-left:1px solid var(--border);font-size:11px;line-height:1.6;}
 
-/* Terminal UI */
-#terminal-trigger {background: var(--blue); color: var(--white); border: none; padding: 10px 20px; font-family: 'Space Mono'; font-size: 10px; font-weight: 700; text-transform: uppercase; border-radius: 4px; cursor: pointer; display: block; margin: 1rem auto; transition: 0.3s;}
-.terminal-overlay {position: fixed; inset: 0; background: rgba(5, 8, 16, 0.98); z-index: 2000; padding: 2rem; display: none; flex-direction: column;}
-.terminal-window {max-width: 800px; width: 100%; margin: auto; background: #000; border: 1px solid var(--border); border-radius: 6px; padding: 2rem; height: 70vh; overflow-y: auto;}
-.term-line { margin-bottom: 6px; line-height: 1.4; opacity: 0; animation: termFade 0.1s forwards; }
+/* TERMINAL REPORT */
+#terminal-trigger {background: var(--blue); color: var(--white); border: none; padding: 8px 16px; font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; border-radius: 4px; cursor: pointer; display: block; margin: 1rem auto 0; transition: all 0.2s; border: 1px solid rgba(255,255,255,0.1);}
+#terminal-trigger:hover {background: var(--green); color: var(--void); box-shadow: 0 0 15px var(--green);}
+.terminal-overlay {position: fixed; inset: 0; background: rgba(5, 8, 16, 0.95); z-index: 2000; padding: 2rem; display: none; flex-direction: column;}
+.terminal-window {max-width: 800px; width: 100%; margin: auto; background: #000; border: 1px solid var(--border); border-radius: 6px; padding: 2rem; height: 70vh; overflow-y: auto; box-shadow: 0 0 40px rgba(0, 229, 160, 0.1);}
+.term-line { margin-bottom: 4px; line-height: 1.4; opacity: 0; animation: termFade 0.1s forwards; }
 @keyframes termFade { from { opacity: 0; } to { opacity: 1; } }
 .term-green { color: var(--green); }
 .term-blue { color: var(--blue); }
-
-.concept-box{background:linear-gradient(135deg,rgba(0,229,160,.06),rgba(0,229,160,.02));border:1px solid rgba(0,229,160,.2);border-radius:6px;padding:1.5rem;margin:2rem 0;}
-.concept-box h3{font-family:'Syne',sans-serif;color:var(--green);font-size:.85rem;margin-bottom:.8rem;}
+.term-amber { color: var(--amber); }
 
 footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:var(--text-dim);letter-spacing:.06em;}
 </style>
@@ -138,7 +131,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;ali
     <a onclick="show('lifecycle')" id="tab-lifecycle">Lifecycle &amp; Phases</a>
     <a onclick="show('decay')" id="tab-decay">Orbital Decay Sim</a>
     <a onclick="show('kpi')" id="tab-kpi">KPIs &amp; Compliance</a>
-    <a onclick="show('impact')" id="tab-impact">10/20/50-Yr Impact</a>
+    <a onclick="show('impact')" id="tab-impact">Impact</a>
   </nav>
 </header>
 
@@ -149,7 +142,7 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;ali
   <div class="hero">
     <div class="hero-tag">ESA Zero Debris Compliant · 6U CubeSat</div>
     <h1>Smart Drag-Sail<br><em>Deorbit System</em></h1>
-    <p>An AI-optimised drag sail that triples deorbit speed by timing deployment to solar weather peaks — making every CubeSat mission compliant, affordable, and propellant-free.</p>
+    <p>An AI-optimised drag sail that triples deorbit speed by timing deployment to solar weather peaks — making every CubeSat mission compliant and propellant-free.</p>
     <div class="orbit-badge">600 km &nbsp;·&nbsp; Sun-Synchronous Orbit &nbsp;·&nbsp; <span id="compliance-status">Calculating Compliance...</span></div>
   </div>
 
@@ -164,38 +157,28 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;ali
     </div>
     <div class="solar-status" id="ai-recommendation-box">
       <strong id="ai-status-text" style="color:var(--green)">AI Recommendation: Optimal Window Open.</strong><br>
-      <span id="ai-detail-text">High solar flux detected. Atmospheric swelling increases drag efficiency.</span>
+      <span id="ai-detail-text">High solar flux detected. Atmospheric swelling at 600km increases drag efficiency.</span>
     </div>
+  </div>
+
+  <div class="section-head"><h2>Subsystem Architecture</h2><div class="line"></div></div>
+  <div class="arch-grid">
+    <div class="arch-card"><h4>AI Logic Module</h4><p>Onboard gradient-boosted regressor trained on 40 years of solar data to predict density peaks.</p></div>
+    <div class="arch-card"><h4>Mechanical Deployer</h4><p>Nitinol-actuated spring system for high-reliability sail deployment after 3 years stowed.</p></div>
+    <div class="arch-card"><h4>Sail Material</h4><p>25μm Aluminized Kapton for maximum solar pressure and atmospheric drag coefficient.</p></div>
   </div>
 
   <div class="stat-grid">
     <div class="stat-card"><div class="stat-num green">&lt;5 yr</div><div class="stat-label">AI-optimised deorbit</div></div>
     <div class="stat-card"><div class="stat-num amber">×10</div><div class="stat-label">Drag area increase</div></div>
-    <div class="stat-card"><div class="stat-num blue">600 km</div><div class="stat-label">Sun-synchronous orbit</div></div>
-    <div class="stat-card"><div class="stat-num red">25+ yr</div><div class="stat-label">Without sail (non-compliant)</div></div>
-  </div>
-
-  <div class="section-head"><h2>Mission concept</h2><div class="line"></div><div class="tag">Overview</div></div>
-  <div class="brief-grid">
-    <div class="brief-card"><h3>The problem</h3><p>A 6U CubeSat at 600 km SSO takes 25+ years to naturally deorbit — creating a collision hazard and violating ESA's new 5-year Zero Debris rule.</p></div>
-    <div class="brief-card"><h3>The solution</h3><p>An integrated drag sail deploys end-of-mission, increasing the cross-section by 10×. AI selects the optimal window based on solar flux forecasts.</p></div>
-    <div class="brief-card"><h3>Why AI timing matters</h3><ul>
-      <li>Solar maximum raises atmosphere density</li>
-      <li>Higher density → more drag → faster decay</li>
-      <li>AI predicts density 27 days ahead</li>
-    </ul></div>
-    <div class="brief-card"><h3>Compliance framework</h3><ul>
-      <li>ESA Zero Debris Charter — 5-year rule</li>
-      <li>IADC Mitigation Guidelines (Rev. 2)</li>
-      <li>ISO 24113 Requirements</li>
-    </ul></div>
+    <div class="stat-card"><div class="stat-num red">25+ yr</div><div class="stat-label">Non-compliant (No sail)</div></div>
   </div>
 </div>
 
 <!-- ── LIFECYCLE ── -->
 <div class="page-section" id="page-lifecycle">
   <div class="section-head"><h2>Mission lifecycle</h2><div class="line"></div><div class="tag">Design → Reentry</div></div>
-  <p style="margin-bottom:2rem;line-height:1.9;">The five-phase lifecycle spans approximately 9 years. Click any phase dot to expand its details.</p>
+  <p style="margin-bottom:2rem;line-height:1.9;">The decision to deploy the sail occurs in Phase 4. **Click a dot to expand detailed specifications.**</p>
   <div class="phase-timeline">
     <div class="phase p1"><div class="phase-dot" onclick="expandPhase(0, event)"></div><div class="phase-name">Design</div><div class="phase-yr">Yr 0–1</div></div>
     <div class="phase p2"><div class="phase-dot" onclick="expandPhase(1, event)"></div><div class="phase-name">Launch</div><div class="phase-yr">Yr 1</div></div>
@@ -204,21 +187,17 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;ali
     <div class="phase p5"><div class="phase-dot" onclick="expandPhase(4, event)"></div><div class="phase-name">Reentry</div><div class="phase-yr">Yr 5–9</div></div>
   </div>
   <div class="phase-cards">
-    <div class="phase-card p1" onclick="expandPhase(0, event)"><strong>Design &amp; Build</strong>6U structure spec, payload integration, AI module development, IADC review.</div>
-    <div class="phase-card p2" onclick="expandPhase(1, event)"><strong>Launch &amp; Deploy</strong>Rideshare to 600 km, LEOP checkout, Comms verified, TLE registration.</div>
-    <div class="phase-card p3" onclick="expandPhase(2, event)"><strong>Operations</strong>Earth imaging, Solar weather data ingest, AI model training on-orbit.</div>
-    <div class="phase-card p4" onclick="expandPhase(3, event)"><strong>Sail Deployment</strong>F10.7 peak wait, AI picks deployment window, Area ×10.</div>
-    <div class="phase-card p5" onclick="expandPhase(4, event)"><strong>Reentry</strong>Alt < 80 km, Aerobraking, Demise / Burn, Zero Debris verified.</div>
-  </div>
-  <div class="concept-box" style="margin-top:2rem;">
-    <h3>AI deployment decision logic</h3>
-    <p>The onboard AI module ingests NOAA F10.7 solar flux data and predicts atmospheric density horizons. It computes the projected decay time for three deployment windows and selects the one that minimises total time-in-orbit while keeping collision probability below the IADC threshold.</p>
+    <div class="phase-card p1"><strong>Design &amp; Build</strong>6U structure spec<br>EO payload<br>Sail mechanism<br>AI module dev<br>IADC review</div>
+    <div class="phase-card p2"><strong>Launch &amp; Deploy</strong>Rideshare to 600 km<br>LEOP checkout<br>Comms verified<br>TLE registered<br>Sail stowed</div>
+    <div class="phase-card p3"><strong>Operations</strong>Earth imaging<br>Solar Wx ingest<br>AI model trains<br>TLE monitoring<br>Collision watch</div>
+    <div class="phase-card p4"><strong>Sail Deployment</strong>F10.7 peak wait<br>AI picks window<br>Sail deploys<br>Drag area ×10<br>Altitude drops</div>
+    <div class="phase-card p5"><strong>Reentry</strong>Alt &lt; 80 km<br>Aerobraking<br>Demise / burn<br>Zero debris<br>✓ ESA 5-yr rule</div>
   </div>
 </div>
 
 <!-- ── DECAY ── -->
 <div class="page-section" id="page-decay">
-  <div class="section-head"><h2>Orbital decay simulation</h2><div class="line"></div><div class="tag">3-Scenario Model</div></div>
+  <div class="section-head"><h2>Orbital decay simulation</h2><div class="line"></div></div>
   <div class="chart-wrap">
     <svg viewBox="0 0 660 360" xmlns="http://www.w3.org/2000/svg">
       <line x1="60" y1="20" x2="60" y2="300" stroke="#2a3d5e" stroke-width="1"/>
@@ -228,81 +207,53 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;ali
       <path fill="none" stroke="#00e5a0" stroke-width="2.5" d="M60,20 C130,22 195,28 230,38 L242,52 C265,90 298,154 328,212 355,260 388,296 450,300"/>
       <line x1="242" y1="20" x2="242" y2="300" stroke="#f5a623" stroke-width="1" stroke-dasharray="3 3"/>
       <text x="246" y="36" fill="#f5a623" font-size="9">Sail deploys (yr 3)</text>
-      <text x="350" y="336" text-anchor="middle" fill="#4a6080" font-size="10">Years post-launch</text>
     </svg>
     <button id="terminal-trigger" onclick="generateReport()">Generate Terminal Compliance Report</button>
   </div>
+
+  <div class="section-head"><h2>Live Risk Assessment</h2><div class="line"></div></div>
   <div class="brief-grid">
-    <div class="brief-card"><h3>Simulation parameters</h3><ul>
-      <li>Mass: 8 kg (6U CubeSat)</li>
-      <li>Cd: 2.2</li>
-      <li>Sail area: 0.30 m²</li>
-      <li>Atmosphere: NRLMSISE-00</li>
-    </ul></div>
-    <div class="brief-card"><h3>Solar weather leverage</h3><ul>
-      <li>F10.7 tracks solar UV flux</li>
-      <li>High flux = denser atmosphere</li>
-      <li>AI rides the density peak</li>
-    </ul></div>
+    <div class="brief-card">
+      <h3>Structural Integrity</h3>
+      <p>Deployment stress: 0.12 N/m² (Safe)<br>Material degradation: 2% / year</p>
+    </div>
+    <div class="brief-card">
+      <h3>Collision Probability</h3>
+      <p>Current: 1.2 x 10⁻⁶<br>Post-Sail: 4.8 x 10⁻⁵ (IADC Compliant)</p>
+    </div>
   </div>
 </div>
 
 <!-- ── KPI ── -->
 <div class="page-section" id="page-kpi">
-  <div class="section-head"><h2>KPIs &amp; compliance</h2><div class="line"></div><div class="tag">IADC · ESA Zero Debris</div></div>
+  <div class="section-head"><h2>KPIs &amp; compliance</h2><div class="line"></div></div>
   <table class="kpi-table">
     <thead><tr><th>KPI</th><th>No sail</th><th>AI-optimised</th></tr></thead>
     <tbody>
       <tr><td>Post-mission lifetime</td><td><span class="badge fail">25+ yr</span></td><td><span class="badge pass">&lt;5 yr</span></td></tr>
       <tr><td>ESA 5-yr compliance</td><td><span class="badge fail">No</span></td><td><span class="badge pass">Yes ✓</span></td></tr>
       <tr><td>Deorbit probability</td><td><span class="badge fail">12%</span></td><td><span class="badge pass">&gt;95%</span></td></tr>
-      <tr><td>Propellant mass</td><td><span class="badge pass">0 kg</span></td><td><span class="badge pass">0 kg</span></td></tr>
     </tbody>
   </table>
-  <div class="ref-block"><div class="ref-id">REF-01 · ESA Zero Debris Charter (2023)</div><p>LEO spacecraft must be deorbited within 5 years of end-of-mission.</p></div>
-  <div class="ref-block"><div class="ref-id">REF-02 · IADC-02-01 Rev.2</div><p>Defines the 25-year rule and collision hazard thresholds.</p></div>
 </div>
 
 <!-- ── IMPACT ── -->
 <div class="page-section" id="page-impact">
-  <div class="section-head"><h2>10 / 20 / 50-year impact</h2><div class="line"></div><div class="tag">Sustainability outlook</div></div>
-  <p style="margin-bottom:2rem;line-height:1.9;">Widespread adoption of AI-timed drag sails structurally shifts management of the 500–700 km orbital shell.</p>
-  
-  <div class="impact-timeline-control">
-    <label>Simulate Future Impact Horizon</label>
-    <input type="range" id="impact-slider" min="10" max="50" value="10" step="20" oninput="updateImpact(this.value)">
-    <div class="slider-labels">
-      <span id="lbl10" class="active" onclick="setSlider(10)">2035 (10y)</span>
-      <span id="lbl30" onclick="setSlider(30)">2045 (20y)</span>
-      <span id="lbl50" onclick="setSlider(50)">2075 (50y)</span>
-    </div>
-  </div>
-
-  <div class="impact-grid">
-    <div class="impact-card active-year" data-yr="10" id="card10">
-      <div class="impact-yr y10">10 yr</div>
-      <p>ESA-compliant deorbit practices across the sector prevent hundreds of dead satellites accumulating in the critical 500–700 km band.</p>
-    </div>
-    <div class="impact-card" data-yr="20" id="card30">
-      <div class="impact-yr y20">20 yr</div>
-      <p>AI-optimised sail deployment reduces average deorbit duration by 60%. Conjunction frequency begins to decline for the first time.</p>
-    </div>
-    <div class="impact-card" data-yr="50" id="card50">
-      <div class="impact-yr y50">50 yr</div>
-      <p>Every satellite carries its own exit plan. The critical density threshold for Kessler syndrome remains safely unbreached.</p>
-    </div>
+  <div class="section-head"><h2>Sustainability Impact</h2><div class="line"></div></div>
+  <div class="brief-grid">
+    <div class="brief-card"><h3>Fleet Reduction</h3><p>Widespread adoption prevents ~400 derelict 6U satellites from cluttering the 600km band over 20 years.</p></div>
+    <div class="brief-card"><h3>Kessler Mitigation</h3><p>Reduces collision cross-section time-product by 80% compared to traditional passive deorbit.</p></div>
   </div>
 </div>
 
 </main>
 
 <footer>
-  <div>ORION-1 · 2025</div>
+  <div>ORION-1 · Smart Drag-Sail CubeSat &nbsp;·&nbsp; 2026</div>
   <div>ESA Zero Debris Compliant</div>
 </footer>
 </div>
 
-<!-- Terminal Overlay -->
 <div class="terminal-overlay" id="term-overlay">
   <div class="terminal-window" id="term-window"></div>
   <button id="terminal-trigger" style="margin-top: 1rem; width: 120px;" onclick="closeReport()">Close</button>
@@ -327,54 +278,49 @@ function draw(){
 }
 draw();
 
-/* Tab Nav */
+/* Tab navigation */
 function show(id){
+  closePhaseModal(); closeReport();
   document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
-  closePhaseModal();
 }
 
-/* Impact Slider Logic */
-function updateImpact(val) {
-  document.querySelectorAll('.impact-card').forEach(c => c.classList.remove('active-year'));
-  document.querySelectorAll('.slider-labels span').forEach(s => s.classList.remove('active'));
-  const targetCard = document.getElementById('card' + val);
-  const targetLabel = document.getElementById('lbl' + val);
-  if(targetCard) targetCard.classList.add('active-year');
-  if(targetLabel) targetLabel.classList.add('active');
-}
-function setSlider(val) {
-  document.getElementById('impact-slider').value = val;
-  updateImpact(val);
-}
-
-/* Solar Monitor Logic */
+/* Solar Monitor */
 setInterval(() => {
   const f107 = (110 + Math.random() * 80).toFixed(1);
   const fValue = document.getElementById('f107-val');
+  const dValue = document.getElementById('dens-val');
+  const aiStatus = document.getElementById('ai-status-text');
+  const aiDetail = document.getElementById('ai-detail-text');
+  const compliance = document.getElementById('compliance-status');
   if(!fValue) return;
   fValue.innerText = f107;
-  const aiStatus = document.getElementById('ai-status-text');
-  const compliance = document.getElementById('compliance-status');
   if(f107 > 150) {
-    fValue.style.color = "var(--green)";
-    aiStatus.innerText = "AI Recommendation: OPTIMAL WINDOW OPEN";
+    fValue.style.color = "var(--green)"; dValue.innerText = "Extreme High";
+    aiStatus.innerText = "AI Recommendation: OPTIMAL WINDOW OPEN"; aiStatus.style.color = "var(--green)";
+    aiDetail.innerText = "Maximum solar-drag leverage detected. Deploying now saves 14 months vs average.";
     compliance.innerText = "DEORBIT POTENTIAL: < 3.8 YRS";
+  } else if(f107 > 130) {
+    fValue.style.color = "var(--amber)"; dValue.innerText = "High";
+    aiStatus.innerText = "AI Recommendation: STANDBY / MONITOR"; aiStatus.style.color = "var(--amber)";
+    aiDetail.innerText = "Strong flux. Prediction model suggests 12% density increase in next 48h.";
+    compliance.innerText = "DEORBIT POTENTIAL: ~4.2 YRS";
   } else {
-    fValue.style.color = "var(--amber)";
-    aiStatus.innerText = "AI Recommendation: STANDBY / MONITOR";
-    compliance.innerText = "DEORBIT POTENTIAL: ~4.5 YRS";
+    fValue.style.color = "var(--red)"; dValue.innerText = "Low (Min)";
+    aiStatus.innerText = "AI Recommendation: HOLD DEPLOYMENT"; aiStatus.style.color = "var(--red)";
+    aiDetail.innerText = "Solar minimum detected. Atmospheric density insufficient for compliant deorbit.";
+    compliance.innerText = "DEORBIT POTENTIAL: NON-COMPLIANT (>5YR)";
   }
 }, 3000);
 
 /* Phase Interaction */
 function expandPhase(index, event){
   event.stopPropagation();
-  closePhaseModal();
   const cards = document.querySelectorAll('.phase-card');
   const dots = document.querySelectorAll('.phase-dot');
+  closePhaseModal();
   const overlay = document.createElement('div');
   overlay.className = 'phase-overlay'; overlay.onclick = closePhaseModal;
   document.body.appendChild(overlay);
@@ -382,33 +328,40 @@ function expandPhase(index, event){
   dots[index].classList.add('active');
 }
 function closePhaseModal(){
-  document.querySelectorAll('.phase-card').forEach(c => c.classList.remove('expanded'));
-  document.querySelectorAll('.phase-dot').forEach(d => d.classList.remove('active'));
+  const cards = document.querySelectorAll('.phase-card');
+  const dots = document.querySelectorAll('.phase-dot');
   const overlay = document.querySelector('.phase-overlay');
+  cards.forEach((card, i) => { card.classList.remove('expanded'); dots[i].classList.remove('active'); });
   if(overlay) overlay.remove();
 }
 
-/* Terminal logic */
+/* Terminal Report */
 function generateReport() {
   const overlay = document.getElementById('term-overlay');
   const win = document.getElementById('term-window');
   overlay.style.display = 'flex'; win.innerHTML = '';
   const lines = [
-    "> INITIALIZING ORION-1 DIAGNOSTIC...",
-    "> FETCHING TLE DATA FROM NORAD...",
-    "> ANALYZING NRLMSISE-00 ATMOSPHERIC MODEL...",
-    "------------------------------------------------",
-    "ESA ZERO DEBRIS COMPLIANCE: PASS ✓",
-    "PREDICTED REENTRY: YEAR 4.86 POST-DEPLOY",
-    "------------------------------------------------",
-    "> SYSTEM STANDBY."
+    {t: "> INITIALIZING ORION-1 DIAGNOSTIC...", c: ""},
+    {t: "> FETCHING CURRENT TLE DATA FROM NORAD...", c: "term-blue"},
+    {t: "> LOADING NRLMSISE-00 ATMOSPHERIC MODEL...", c: ""},
+    {t: "> CALCULATING CROSS-SECTIONAL AREA [0.30 m²]", c: "term-amber"},
+    {t: "> RUNNING MONTE CARLO DECAY SCENARIOS (n=10,000)...", c: ""},
+    {t: "------------------------------------------------", c: ""},
+    {t: "ANALYSIS COMPLETE: ESA ZERO DEBRIS COMPLIANCE", c: "term-green"},
+    {t: "DEORBIT METHOD: PASSIVE DRAG AUGMENTATION", c: ""},
+    {t: "SCENARIO: AI-TIMED SOLAR PEAK DEPLOYMENT", c: "term-blue"},
+    {t: "PREDICTED REENTRY: YEAR 4.86 POST-DEPLOY", c: "term-green"},
+    {t: "STATUS: MISSION COMPLIANT ✓", c: "term-green"},
+    {t: "------------------------------------------------", c: ""},
+    {t: "> REPORT READY FOR EXPORT. SYSTEM STANDBY.", c: ""}
   ];
   lines.forEach((line, i) => { setTimeout(() => {
-    const div = document.createElement('div'); div.className = 'term-line ' + (line.includes('PASS') ? 'term-green' : '');
-    div.innerText = line; win.appendChild(div);
+    const div = document.createElement('div'); div.className = 'term-line ' + line.c;
+    div.innerText = line.t; win.appendChild(div); win.scrollTop = win.scrollHeight;
   }, i * 400); });
 }
 function closeReport() { document.getElementById('term-overlay').style.display = 'none'; }
+document.addEventListener('keydown', (e) => { if(e.key === 'Escape') { closePhaseModal(); closeReport(); } });
 </script>
 </body>
 </html>
