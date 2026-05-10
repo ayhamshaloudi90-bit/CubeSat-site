@@ -52,19 +52,30 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
 .phase-timeline{display:flex;gap:0;margin:2rem 0;position:relative;}
 .phase-timeline::before{content:'';position:absolute;top:40px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--border),var(--border),transparent);z-index:0;}
 .phase{flex:1;text-align:center;position:relative;z-index:1;}
-.phase-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border);margin:34px auto 10px;transition:all .3s;}
-.phase:hover .phase-dot{transform:scale(1.4);}
+.phase-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border);margin:34px auto 10px;transition:all .3s;cursor:pointer;}
+.phase-dot:hover{transform:scale(1.4);}
 .phase.p1 .phase-dot{background:#6c5fc7;border-color:#8b7ed8;box-shadow:0 0 12px rgba(108,95,199,.5);}
+.phase.p1 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(108,95,199,.8);}
 .phase.p2 .phase-dot{background:var(--blue);border-color:#6aacff;box-shadow:0 0 12px rgba(58,143,255,.5);}
+.phase.p2 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(58,143,255,.8);}
 .phase.p3 .phase-dot{background:#0f9e6a;border-color:var(--green);box-shadow:0 0 12px rgba(0,229,160,.5);}
+.phase.p3 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(0,229,160,.8);}
 .phase.p4 .phase-dot{background:var(--amber);border-color:#ffc04a;box-shadow:0 0 12px rgba(245,166,35,.5);}
+.phase.p4 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(245,166,35,.8);}
 .phase.p5 .phase-dot{background:var(--red);border-color:#f06060;box-shadow:0 0 12px rgba(232,64,64,.5);}
+.phase.p5 .phase-dot.active{transform:scale(1.8);box-shadow:0 0 24px rgba(232,64,64,.8);}
 .phase-name{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--light);font-weight:700;}
 .phase-yr{font-size:9px;color:var(--text-dim);margin-top:2px;}
 .phase-cards{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:1rem;}
-.phase-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1rem .75rem;font-size:10px;line-height:1.8;color:var(--text);}
+.phase-card{background:var(--panel);border:1px solid var(--border);border-radius:4px;padding:1rem .75rem;font-size:10px;line-height:1.8;color:var(--text);transition:all .3s ease;max-height:200px;overflow:hidden;}
+.phase-card.expanded{max-height:500px;padding:1.5rem;border:2px solid;}
 .phase-card strong{display:block;font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;margin-bottom:.5rem;letter-spacing:.04em;}
 .p1 strong{color:#8b7ed8}.p2 strong{color:var(--blue)}.p3 strong{color:var(--green)}.p4 strong{color:var(--amber)}.p5 strong{color:var(--red)}
+.phase-card.p1.expanded{border-color:#8b7ed8;background:rgba(139,126,216,.1);box-shadow:0 0 20px rgba(108,95,199,.3);}
+.phase-card.p2.expanded{border-color:var(--blue);background:rgba(58,143,255,.1);box-shadow:0 0 20px rgba(58,143,255,.3);}
+.phase-card.p3.expanded{border-color:var(--green);background:rgba(0,229,160,.1);box-shadow:0 0 20px rgba(0,229,160,.3);}
+.phase-card.p4.expanded{border-color:var(--amber);background:rgba(245,166,35,.1);box-shadow:0 0 20px rgba(245,166,35,.3);}
+.phase-card.p5.expanded{border-color:var(--red);background:rgba(232,64,64,.1);box-shadow:0 0 20px rgba(232,64,64,.3);}
 .chart-wrap{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.5rem;margin:1.5rem 0;overflow:hidden;}
 .chart-wrap svg{display:block;width:100%;height:auto;}
 .kpi-table{width:100%;border-collapse:collapse;margin:1.5rem 0;}
@@ -143,13 +154,13 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;ali
 <!-- ── LIFECYCLE ── -->
 <div class="page-section" id="page-lifecycle">
   <div class="section-head"><h2>Mission lifecycle</h2><div class="line"></div><div class="tag">Design → Reentry</div></div>
-  <p style="margin-bottom:2rem;line-height:1.9;">The five-phase lifecycle spans approximately 9 years from initial design through propellant-free reentry. The AI sail-deployment decision sits at phase 4, after 3 years of operational solar data collection.</p>
+  <p style="margin-bottom:2rem;line-height:1.9;">The five-phase lifecycle spans approximately 9 years from initial design through propellant-free reentry. The AI sail-deployment decision sits at phase 4, after 3 years of operational solar data collection. <strong>Click any phase dot to expand its details.</strong></p>
   <div class="phase-timeline">
-    <div class="phase p1"><div class="phase-dot"></div><div class="phase-name">Design</div><div class="phase-yr">Yr 0–1</div></div>
-    <div class="phase p2"><div class="phase-dot"></div><div class="phase-name">Launch</div><div class="phase-yr">Yr 1</div></div>
-    <div class="phase p3"><div class="phase-dot"></div><div class="phase-name">Operations</div><div class="phase-yr">Yr 1–4</div></div>
-    <div class="phase p4"><div class="phase-dot"></div><div class="phase-name">Sail deploy</div><div class="phase-yr">Yr 4 (AI)</div></div>
-    <div class="phase p5"><div class="phase-dot"></div><div class="phase-name">Reentry</div><div class="phase-yr">Yr 5–9</div></div>
+    <div class="phase p1"><div class="phase-dot" onclick="expandPhase(0, event)"></div><div class="phase-name">Design</div><div class="phase-yr">Yr 0–1</div></div>
+    <div class="phase p2"><div class="phase-dot" onclick="expandPhase(1, event)"></div><div class="phase-name">Launch</div><div class="phase-yr">Yr 1</div></div>
+    <div class="phase p3"><div class="phase-dot" onclick="expandPhase(2, event)"></div><div class="phase-name">Operations</div><div class="phase-yr">Yr 1–4</div></div>
+    <div class="phase p4"><div class="phase-dot" onclick="expandPhase(3, event)"></div><div class="phase-name">Sail deploy</div><div class="phase-yr">Yr 4 (AI)</div></div>
+    <div class="phase p5"><div class="phase-dot" onclick="expandPhase(4, event)"></div><div class="phase-name">Reentry</div><div class="phase-yr">Yr 5–9</div></div>
   </div>
   <div class="phase-cards">
     <div class="phase-card p1"><strong>Design &amp; Build</strong>6U structure spec<br>EO payload<br>Sail mechanism<br>AI module dev<br>IADC review</div>
@@ -312,6 +323,43 @@ function show(id){
   document.getElementById('page-'+id).classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
 }
+
+/* Interactive phase expansion */
+function expandPhase(index, event){
+  event.stopPropagation();
+  const cards = document.querySelectorAll('.phase-card');
+  const dots = document.querySelectorAll('.phase-dot');
+  
+  // Toggle: if already expanded, collapse it; otherwise expand only this one
+  if(cards[index].classList.contains('expanded')){
+    cards[index].classList.remove('expanded');
+    dots[index].classList.remove('active');
+  } else {
+    // Collapse all others
+    cards.forEach((card, i) => {
+      card.classList.remove('expanded');
+      dots[i].classList.remove('active');
+    });
+    // Expand this one
+    cards[index].classList.add('expanded');
+    dots[index].classList.add('active');
+  }
+}
+
+// Close expanded card when clicking outside
+document.addEventListener('click', function(){
+  const cards = document.querySelectorAll('.phase-card');
+  const dots = document.querySelectorAll('.phase-dot');
+  cards.forEach((card, i) => {
+    card.classList.remove('expanded');
+    dots[i].classList.remove('active');
+  });
+});
+
+// Prevent closing when clicking on phase cards themselves
+document.querySelectorAll('.phase-card').forEach(card => {
+  card.addEventListener('click', event => event.stopPropagation());
+});
 </script>
 </body>
 </html>
