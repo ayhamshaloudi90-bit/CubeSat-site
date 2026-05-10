@@ -95,12 +95,24 @@ main{flex:1;padding:3rem 2.5rem;max-width:1100px;margin:0 auto;width:100%;}
 .ref-block{background:var(--panel);border-left:3px solid var(--blue);border-radius:0 4px 4px 0;padding:1rem 1.2rem;margin:.8rem 0;}
 .ref-block .ref-id{font-size:10px;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;}
 .ref-block p{color:var(--text);line-height:1.8;}
+
+/* IMPACT TAB STYLES */
 .impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:1.5rem 0;}
-.impact-card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.5rem;position:relative;overflow:hidden;}
+.impact-card{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:1.5rem;position:relative;overflow:hidden;transition:all 0.4s ease;opacity:0.4;}
+.impact-card.active-year{opacity:1;border-color:var(--white);transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.4);}
 .impact-card::before{content:attr(data-yr);position:absolute;top:-8px;right:12px;font-family:'Syne',sans-serif;font-weight:800;font-size:3.5rem;color:rgba(255,255,255,.03);line-height:1;pointer-events:none;}
+.impact-card.active-year::before{color:rgba(255,255,255,.08);}
 .impact-yr{font-family:'Syne',sans-serif;font-weight:800;font-size:1.6rem;margin-bottom:.6rem;}
 .impact-yr.y10{color:var(--blue)}.impact-yr.y20{color:var(--amber)}.impact-yr.y50{color:var(--green)}
 .impact-card p{line-height:1.9;font-size:12px;color:var(--text);}
+.impact-timeline-control {background: var(--panel); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;}
+.impact-timeline-control label {font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--light);}
+#impact-slider {width: 100%; max-width: 500px; -webkit-appearance: none; background: var(--border); height: 4px; border-radius: 2px; outline: none;}
+#impact-slider::-webkit-slider-thumb {-webkit-appearance: none; width: 20px; height: 20px; background: var(--green); border-radius: 50%; cursor: pointer; border: 4px solid var(--void); box-shadow: 0 0 10px var(--green);}
+.slider-labels {display: flex; justify-content: space-between; width: 100%; max-width: 500px; padding: 0 5px;}
+.slider-labels span {font-size: 11px; color: var(--text-dim); cursor: pointer;}
+.slider-labels span.active {color: var(--white); font-weight: 700;}
+
 .concept-box{background:linear-gradient(135deg,rgba(0,229,160,.06),rgba(0,229,160,.02));border:1px solid rgba(0,229,160,.2);border-radius:6px;padding:1.5rem;margin:2rem 0;}
 .concept-box h3{font-family:'Syne',sans-serif;color:var(--green);font-size:.85rem;margin-bottom:.8rem;}
 .concept-box p{line-height:1.9;font-size:12px;}
@@ -297,10 +309,21 @@ footer{border-top:1px solid var(--border);padding:1.5rem 2.5rem;display:flex;ali
 <div class="page-section" id="page-impact">
   <div class="section-head"><h2>10 / 20 / 50-year impact</h2><div class="line"></div><div class="tag">Sustainability outlook</div></div>
   <p style="margin-bottom:2rem;line-height:1.9;">Widespread adoption of AI-timed drag sails would structurally shift how the 500–700 km orbital shell is managed.</p>
+  
+  <div class="impact-timeline-control">
+    <label>Simulate Future Impact Horizon</label>
+    <input type="range" id="impact-slider" min="10" max="50" value="10" step="20" oninput="updateImpact(this.value)">
+    <div class="slider-labels">
+      <span id="lbl10" class="active">2035 (10y)</span>
+      <span id="lbl20">2045 (20y)</span>
+      <span id="lbl50">2075 (50y)</span>
+    </div>
+  </div>
+
   <div class="impact-grid">
-    <div class="impact-card" data-yr="10"><div class="impact-yr y10">10 yr</div><p>ESA-compliant deorbit practices across the CubeSat sector could prevent several hundred dead satellites accumulating in the critical 500–700 km band. Regulatory momentum shifts: stricter rules follow the ESA Charter.</p></div>
-    <div class="impact-card" data-yr="20"><div class="impact-yr y20">20 yr</div><p>AI-optimised sail deployment reduces average deorbit duration by 40–60% versus naive approaches across the fleet. Conjunction frequency begins to decline for the first time since the CubeSat era began.</p></div>
-    <div class="impact-card" data-yr="50"><div class="impact-yr y50">50 yr</div><p>Every satellite carries its own verified exit plan. The critical density threshold for Kessler syndrome in the 600 km shell remains safely unbreached.</p></div>
+    <div class="impact-card active-year" data-yr="10" id="card10"><div class="impact-yr y10">10 yr</div><p>ESA-compliant deorbit practices across the CubeSat sector could prevent several hundred dead satellites accumulating in the critical 500–700 km band. Regulatory momentum shifts: stricter rules follow the ESA Charter.</p></div>
+    <div class="impact-card" data-yr="20" id="card20"><div class="impact-yr y20">20 yr</div><p>AI-optimised sail deployment reduces average deorbit duration by 40–60% versus naive approaches across the fleet. Conjunction frequency begins to decline for the first time since the CubeSat era began.</p></div>
+    <div class="impact-card" data-yr="50" id="card50"><div class="impact-yr y50">50 yr</div><p>Every satellite carries its own verified exit plan. The critical density threshold for Kessler syndrome in the 600 km shell remains safely unbreached.</p></div>
   </div>
   <div class="concept-box" style="margin-top:2rem;">
     <h3>The AI edge — why timing is everything</h3>
@@ -347,6 +370,14 @@ function show(id){
   document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   document.getElementById('tab-'+id).classList.add('active');
+}
+
+/* Impact Slider Interaction */
+function updateImpact(val) {
+  document.querySelectorAll('.impact-card').forEach(c => c.classList.remove('active-year'));
+  document.querySelectorAll('.slider-labels span').forEach(s => s.classList.remove('active'));
+  document.getElementById('card' + val).classList.add('active-year');
+  document.getElementById('lbl' + val).classList.add('active');
 }
 
 /* Dynamic AI Solar Monitor Logic */
